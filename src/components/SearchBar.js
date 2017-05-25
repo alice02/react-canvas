@@ -1,57 +1,39 @@
 import React from "react";
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import Search from 'material-ui/svg-icons/action/search';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+import CircularProgress from 'material-ui/CircularProgress';
 
-export default class SearchBar extends React.Component {
+class SearchBar extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: 1,
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event, index, val) {
-    this.setState({value: val});
+  componentWillReceiveProps(nextProps) {
+    console.log("next")
+    console.log(nextProps);
   }
 
   render() {
     const paperStyle = {
-      height: 80,
+      height: 60,
       width: "100%",
-      margin: 0,
-      textAlign: 'center',
-      display: 'inline-block',
-    };
-
-    const searchIconStyle = {
-      margin: 10,
       textAlign: 'center',
       display: 'inline-block',
     };
 
     return (
       <Paper style={paperStyle} zDepth={2} rounded={false}>
-        <div style={{ display: 'flex', justifyContent: "center" }}>
-          <SelectField
-            value={this.state.value}
-            onChange={this.handleChange}
-            floatingLabelText="Type"
-            style={{alignSelf: 'flex-end', marginLeft: 20, width: 150 }}
-          >
-            <MenuItem value={1} primaryText="ID" />
-            <MenuItem value={2} primaryText="Email" />
-          </SelectField>
           <TextField
-            floatingLabelText='ID or Email'
+            floatingLabelText="ID"
           />
-
-        </div>
+          <RaisedButton
+            label="Search"
+            primary={true}
+            onTouchTap={(e) => this.props.handleSubmit(e)}
+            disabled={this.props.isFetching}
+          />
+      {this.props.isFetching ? <CircularProgress /> : <p />}
       </Paper>
     );
   }
 }
+
+export default SearchBar;

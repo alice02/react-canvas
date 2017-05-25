@@ -1,14 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import App from "./components/App";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import App from "./containers/App";
+import rootReducer from "./reducers";
 
 injectTapEventPlugin();
 
+const initialState = {
+  isFetching: false,
+  locations: []
+}
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleware(rootReducer)
+
 ReactDOM.render(
-  <MuiThemeProvider>
+  <Provider store={store}>
     <App />
-  </MuiThemeProvider>,
+  </Provider>,
   document.querySelector("#app")
 );
