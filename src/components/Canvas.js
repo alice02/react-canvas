@@ -11,15 +11,16 @@ export default class Canvas extends React.Component {
           <Group>
             <Rect
                 x={0} y={10} width={50} height={50}
-                fill={"red"}
+                stroke={"black"}
             />
             <Rect
-                x={350} y={10} width={50} height={50}
-                fill={"red"}
+                x={50} y={10} width={50} height={50}
+                stroke={"black"}
             />
             <Rect
-                x={400} y={10} width={50} height={50}
-                fill={"red"}
+                x={100} y={10} width={50} height={50}
+                stroke={"black"}
+                fill={"lightblue"}
             />
           </Group>
         </Layer>

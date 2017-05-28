@@ -13,14 +13,13 @@ class SearchBar extends React.Component {
 
   render() {
     const paperStyle = {
-      height: 60,
+      height: 80,
       width: "100%",
-      textAlign: 'center',
       display: 'inline-block',
     };
 
     return (
-      <Paper style={paperStyle} zDepth={2} rounded={false}>
+      <div>
           <TextField
             floatingLabelText="ID"
           />
@@ -30,8 +29,7 @@ class SearchBar extends React.Component {
             onTouchTap={(e) => this.props.handleSubmit(e)}
             disabled={this.props.isFetching}
           />
-      {this.props.isFetching ? <CircularProgress /> : <p />}
-      </Paper>
+      </div>
     );
   }
 }
